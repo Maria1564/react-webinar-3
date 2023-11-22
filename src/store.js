@@ -47,7 +47,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: this.code, title: 'Новая запись'}]
+      list: [...this.state.list, {code: this.code, title: 'Новая запись', totalSelect: 0}]
     })
     this.code+=1
   };
@@ -76,6 +76,11 @@ class Store {
 
         if (item.code === code) {
           item.selected = !item.selected;
+
+          //если запись выделили, а не убрали выделение, то +1 к количеству выделений этой записи
+          if(item.selected){
+            item.totalSelect += 1
+          }
         }
         return item;
       })

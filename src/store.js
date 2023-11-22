@@ -67,6 +67,9 @@ class Store {
     this.setState({
       ...this.state,
       list: this.state.list.map(item => {
+        // убираем выделение у других записей
+        if(item.selected && item.code !== code) item.selected = !item.selected
+
         if (item.code === code) {
           item.selected = !item.selected;
         }

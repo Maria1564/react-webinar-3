@@ -6,8 +6,12 @@ class Store {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
 
-    this.code 
-    this.state.list ?  this.code = this.state.list.length + 1 : this.code = 1
+    if(this.state.list.length) {
+      const arrCodes = this.state.list.map(item=> item.code)
+      this.code = Math.max(...arrCodes) + 1
+    }else  {
+      this.code = 1
+    }
   }
 
   /**

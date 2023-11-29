@@ -10,7 +10,6 @@ import PageLayout from "./components/page-layout";
  * @returns {React.ReactElement}
  */
 function App({store}) {
-console.log("dasdasd")
   const list = store.getState().list;
 
   const callbacks = {

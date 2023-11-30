@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 import "./style.css"
 
 
@@ -17,12 +19,27 @@ function ModalItem(props){
         {props.item.count}шт
       </p>
       <div className='ModalItem-actions'>
-        <button>
+        <button onClick={()=>{props.onDelete(props.item.code)}}>
           Удалить
         </button>
       </div>
     </div>
   );
+}
+
+ModalItem.propTypes = {
+  item: PropTypes.shape({
+    code: PropTypes.number,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    count: PropTypes.number
+  }).isRequired,
+  onDelete: PropTypes.func
+};
+
+ModalItem.defaultProps = {
+  onDelete: () => {
+  },
 }
 
 export default React.memo(ModalItem)

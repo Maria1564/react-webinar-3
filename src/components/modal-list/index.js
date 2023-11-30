@@ -4,13 +4,13 @@ import "./style.css"
 import ModalItem from '../modal-item'
 
 
-function ModalList({cart}){
+function ModalList({cart, onDelete}){
   return (
     <div className='ModalList'>
       {
         cart.map(item =>
           <div key={item.code} className='ModalList-item'>
-            <ModalItem item={item}/>
+            <ModalItem item={item} onDelete={onDelete}/>
           </div>
           )
       }
@@ -22,7 +22,13 @@ function ModalList({cart}){
 ModalList.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.number
-  })).isRequired
+  })).isRequired,
+  onDelete: PropTypes.func
 };
+
+ModalList.defaultProps = {
+  onDelete: () => {},
+}
+
 
 export default React.memo(ModalList)

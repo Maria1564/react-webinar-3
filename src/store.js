@@ -46,7 +46,14 @@ class Store {
    * Добавление товаров в коризну
    */
   addItem(item) {
-    if(item.count === 1) {
+    let isHave = false
+
+    this.state.cart.length && this.state.cart.forEach(elem =>{
+      if(item.code === elem.code) isHave = true
+    })
+
+    if(!isHave) {
+      item.count = 1
       this.setState({
         ...this.state,
         cart: [...this.state.cart, item]
@@ -55,7 +62,7 @@ class Store {
       this.setState({
         ...this.state,
         cart: this.state.cart.map(elem => {
-          if(elem.code == item.code) return {...elem, count: item.count}
+          if(elem.code == item.code) return {...elem, count: elem.count+1}
 
           return elem
         })
@@ -86,6 +93,16 @@ class Store {
     })
 
     return {total: this.state.cart.length, sum} //total - количество уникального товара
+  }
+
+  /**
+   * Удаление товара из корзины
+  */
+  deleteProduct(code) {
+    this.setState({
+      ...this.state,
+      cart: this.state.cart.filter(item => item.code !== code )
+    })
   }
 }
 

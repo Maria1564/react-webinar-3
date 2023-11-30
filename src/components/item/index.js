@@ -5,13 +5,13 @@ import './style.css';
 function Item(props) {
 
   // кол-во товара, добавленого в корзину
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
 
   const callbacks = {
     onAdd: (item)=>{
-      item.count = count
+      // item.count = 1
       props.onAdd(item)
-      setCount(count+1)
+      // setCount(count+1)
     }
   }
 

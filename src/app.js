@@ -29,7 +29,11 @@ function App({store}) {
 
     getTotalProducts: useCallback(()=>{
       return store.getTotalProducts()
-    }, [cart])
+    }, [cart]),
+
+    onDeleteProduct: useCallback((code)=>{
+      store.deleteProduct(code)
+    }, [store])
   }
 
   return (
@@ -39,7 +43,7 @@ function App({store}) {
       <Controls getTotalProducts={callbacks.getTotalProducts} setShowModal={setShowModal}/>
       <List list={list} onAddItem={callbacks.onAddItem}/>
     </PageLayout>
-    {showModal? <Modal cart={cart} setShowModal={setShowModal}/>: null}
+    {showModal? <Modal cart={cart} setShowModal={setShowModal} onDeleteProduct={callbacks.onDeleteProduct}/>: null}
     </>
   );
 }

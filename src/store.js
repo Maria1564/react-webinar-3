@@ -36,6 +36,8 @@ class Store {
    */
   setState(newState) {
     this.state = newState;
+
+    console.log(this.state.cart)
     // Вызываем всех слушателей
     for (const listener of this.listeners) listener();
   }
@@ -43,8 +45,22 @@ class Store {
   /**
    * Добавление товаров в коризну
    */
-  addItem() {
+  addItem(item) {
+    if(item.count === 1) {
+      this.setState({
+        ...this.state,
+        cart: [...this.state.cart, item]
+      })
+    }else {
+      this.setState({
+        ...this.state,
+        cart: this.state.cart.map(elem => {
+          if(elem.code == item.code) return {...elem, count: item.count}
 
+          return elem
+        })
+      })
+    }
   };
 
   /**

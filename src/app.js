@@ -16,13 +16,17 @@ function App({store}) {
     onDeleteItem: useCallback((code) => {
       store.deleteItem(code);
     }, [store]),
+
+    onAddItem: useCallback((item)=>{
+      store.addItem(item)
+    }, [store])
   }
 
   return (
     <PageLayout>
       <Head title='Приложение на чистом JS'/>
       <Controls />
-      <List list={list}/>
+      <List list={list} onAddItem={callbacks.onAddItem}/>
     </PageLayout>
   );
 }

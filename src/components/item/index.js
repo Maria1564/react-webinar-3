@@ -6,10 +6,14 @@ import './style.css';
 function Item(props) {
 
   // кол-во товара, добавленого в корзину
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const callbacks = {
-
+    onAdd: (item)=>{
+      item.count = count
+      props.onAdd(item)
+      setCount(count+1)
+    }
   }
 
   return (
@@ -18,8 +22,11 @@ function Item(props) {
       <div className='Item-title'>
         {props.item.title}
       </div>
+      <p>
+        {new Intl.NumberFormat("ru", {style: "currency", currency: "RUB", minimumFractionDigits: 0}).format(props.item.price)}
+      </p>
       <div className='Item-actions'>
-        <button >
+        <button onClick={()=>callbacks.onAdd(props.item)}>
           Добавить
         </button>
       </div>
@@ -31,17 +38,13 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
-    selected: PropTypes.bool,
-    count: PropTypes.number
+    price: PropTypes.number
   }).isRequired,
-  onDelete: PropTypes.func,
-  onSelect: PropTypes.func
+  onAdd: PropTypes.func
 };
 
 Item.defaultProps = {
-  onDelete: () => {
-  },
-  onSelect: () => {
+  onAdd: () => {
   },
 }
 

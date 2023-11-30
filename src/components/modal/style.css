@@ -16,9 +16,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 960px;
-  min-height: 407px;
   border-radius: 10px;
   background: #FFF;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.50);
   overflow: hidden;
+}
+
+.Modal-sum  {
+  margin: 20px 120px 90px auto;
+  font-weight: 700;
+  font-size: 18px;
+  width: max-content;
+}
+
+.Modal-sum > span {
+  margin-left: 53px;
 }

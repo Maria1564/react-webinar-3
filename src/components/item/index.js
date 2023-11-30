@@ -1,19 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import './style.css';
 
 function Item(props) {
 
-  // кол-во товара, добавленого в корзину
-  // const [count, setCount] = useState(1);
 
-  const callbacks = {
-    onAdd: (item)=>{
-      // item.count = 1
-      props.onAdd(item)
-      // setCount(count+1)
-    }
-  }
 
   return (
     <div className={'Item'}>
@@ -25,7 +16,7 @@ function Item(props) {
         {new Intl.NumberFormat("ru", {style: "currency", currency: "RUB", minimumFractionDigits: 0}).format(props.item.price)}
       </p>
       <div className='Item-actions'>
-        <button onClick={()=>callbacks.onAdd(props.item)}>
+        <button onClick={()=>props.onAdd(props.item)}>
           Добавить
         </button>
       </div>

@@ -5,9 +5,11 @@
 }
 
 .Controls-info {
+  font-size: 18px;
   margin-right: 20px;
 }
 
 .Controls-info > span {
-  font-weight: bold;
+  color: #0C0C0C;
+  font-weight: 700;
 }

@@ -43,7 +43,9 @@ function App({store}) {
       <Controls getTotalProducts={callbacks.getTotalProducts} setShowModal={setShowModal}/>
       <List list={list} onAddItem={callbacks.onAddItem}/>
     </PageLayout>
-    {showModal? <Modal cart={cart} setShowModal={setShowModal} onDeleteProduct={callbacks.onDeleteProduct}/>: null}
+    {showModal?
+      <Modal cart={cart} setShowModal={setShowModal} onDeleteProduct={callbacks.onDeleteProduct} getTotalProducts={callbacks.getTotalProducts}/>
+      : null}
     </>
   );
 }

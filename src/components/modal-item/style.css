@@ -1,19 +1,24 @@
-.Item {
+.ModalItem {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   transition: background-color 1s;
 }
 
-.Item-code {
+.ModalItem-code {
   padding: 20px 10px 20px 20px;
 }
 
-.Item-title {
+.ModalItem-title {
   width: 100%;
   padding: 20px 10px;
 }
 
-.Item-actions {
+.ModalItem-total {
+  margin-left: 62px;
+}
+
+.ModalItem-actions {
   display: flex;
   justify-content: flex-end;
   padding: 20px 20px 20px 10px;

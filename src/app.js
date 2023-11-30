@@ -3,6 +3,7 @@ import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
+import Modal from './components/modal';
 
 /**
  * Приложение
@@ -28,11 +29,14 @@ function App({store}) {
   }
 
   return (
+    <>
     <PageLayout>
-      <Head title='Магазин'/>
+      <Head title='Магазин' isModal={false}/>
       <Controls getTotalProducts={callbacks.getTotalProducts}/>
       <List list={list} onAddItem={callbacks.onAddItem}/>
     </PageLayout>
+    <Modal cart={cart}/>
+    </>
   );
 }
 

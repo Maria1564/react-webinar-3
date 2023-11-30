@@ -74,6 +74,19 @@ class Store {
       list: this.state.list.filter(item => item.code !== code)
     })
   };
+
+  /**
+   * Получение общего количества уникального товара и суммы
+   */
+  getTotalProducts() {
+    let sum = 0 // сумма
+
+    this.state.cart.length && this.state.cart.forEach(item => {
+      sum = sum + (item.count * item.price)
+    })
+
+    return {total: this.state.cart.length, sum} //total - количество уникального товара
+  }
 }
 
 export default Store;

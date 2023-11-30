@@ -14,8 +14,7 @@ const store = new Store({
     {code: generateCode(), title: 'Карандаши цветные', price: 111},
     {code: generateCode(), title: 'Товар сюрприз', price: 0},
   ],
-  cart: [
-    {code: 2, title: 'Книга про React', price: 770, count: 2}] //корзина товаров
+  cart: [] //корзина товаров
 });
 
 const root = createRoot(document.getElementById('root'));

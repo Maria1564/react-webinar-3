@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
@@ -11,6 +11,10 @@ import Modal from './components/modal';
  * @returns {React.ReactElement}
  */
 function App({store}) {
+
+  //показывать ли модалку
+  const [showModal, setShowModal] = useState(false)
+
   const list = store.getState().list;
   const cart = store.getState().cart;
 
@@ -32,10 +36,10 @@ function App({store}) {
     <>
     <PageLayout>
       <Head title='Магазин' isModal={false}/>
-      <Controls getTotalProducts={callbacks.getTotalProducts}/>
+      <Controls getTotalProducts={callbacks.getTotalProducts} setShowModal={setShowModal}/>
       <List list={list} onAddItem={callbacks.onAddItem}/>
     </PageLayout>
-    <Modal cart={cart}/>
+    {showModal? <Modal cart={cart} setShowModal={setShowModal}/>: null}
     </>
   );
 }

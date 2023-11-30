@@ -5,11 +5,11 @@ import Head from '../head'
 import ModalList from '../modal-list'
 
 
-function Modal({cart}){
+function Modal({cart, setShowModal}){
   return (
     <div className='Modal'>
       <div className='Modal-wrapper'>
-          <Head title="Корзина" isModal={true}/>
+          <Head title="Корзина" isModal={true} setShowModal={setShowModal}/>
           <ModalList cart={cart}/>
       </div>
     </div>
@@ -17,7 +17,8 @@ function Modal({cart}){
 }
 
 Modal.propTypes = {
-  cart: PropTypes.array.isRequired
+  cart: PropTypes.array.isRequired,
+  setShowModal: PropTypes.func.isRequired
 }
 
 export default React.memo(Modal)

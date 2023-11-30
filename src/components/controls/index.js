@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {plural} from "../../utils";
 import './style.css';
 
-function Controls({getTotalProducts}) {
+function Controls({getTotalProducts, setShowModal}) {
 
   const totalProducts = getTotalProducts()
 
@@ -14,15 +14,16 @@ function Controls({getTotalProducts}) {
         one: 'товар',
         few: 'товара',
         many: 'товаров'
-      })}` : '0'} / {new Intl.NumberFormat("ru", {style: "currency", currency: "RUB", minimumFractionDigits: 0}).format(totalProducts.sum)}</span>
+      })} /  ${new Intl.NumberFormat("ru", {style: "currency", currency: "RUB", minimumFractionDigits: 0}).format(totalProducts.sum)}`: "пусто"}</span>
       </div>
-      <button >Перейти</button>
+      <button onClick={()=>{setShowModal(true)}}>Перейти</button>
     </div>
   )
 }
 
 Controls.propTypes = {
-  getTotalProducts: PropTypes.func
+  getTotalProducts: PropTypes.func,
+  setShowModal: PropTypes.func.isRequired
 };
 
 Controls.defaultProps = {

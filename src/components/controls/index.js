@@ -3,18 +3,16 @@ import PropTypes from 'prop-types';
 import {plural} from "../../utils";
 import './style.css';
 
-function Controls({getTotalProducts, setShowModal}) {
-
-  const totalProducts = getTotalProducts()
+function Controls({total, sum, setShowModal}) {
 
   return (
     <div className='Controls'>
       <div className="Controls-info">
-        В корзине: <span>{totalProducts.total ? `${totalProducts.total} ${plural(totalProducts.total, {
+        В корзине: <span>{total ? `${total} ${plural(total, {
         one: 'товар',
         few: 'товара',
         many: 'товаров'
-      })} /  ${new Intl.NumberFormat("ru", {style: "currency", currency: "RUB", minimumFractionDigits: 0}).format(totalProducts.sum)}`: "пусто"}</span>
+      })} /  ${new Intl.NumberFormat("ru", {style: "currency", currency: "RUB", minimumFractionDigits: 0}).format(sum)}`: "пусто"}</span>
       </div>
       <button onClick={()=>{setShowModal(true)}}>Перейти</button>
     </div>
@@ -22,12 +20,10 @@ function Controls({getTotalProducts, setShowModal}) {
 }
 
 Controls.propTypes = {
-  getTotalProducts: PropTypes.func,
+  total:PropTypes.number.isRequired,
+  sum:PropTypes.number.isRequired,
   setShowModal: PropTypes.func.isRequired
 };
 
-Controls.defaultProps = {
-  getTotalProducts: () => {}
-}
 
 export default React.memo(Controls);

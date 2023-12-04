@@ -17,19 +17,13 @@ function App({store}) {
 
   const list = store.getState().list;
   const cart = store.getState().cart;
+  const sum = store.getState().sum;
+  const total = store.getState().total;
 
   const callbacks = {
-    onDeleteItem: useCallback((code) => {
-      store.deleteItem(code);
-    }, [store]),
-
     onAddItem: useCallback((item)=>{
       store.addItem(item)
     }, [store]),
-
-    getTotalProducts: useCallback(()=>{
-      return store.getTotalProducts()
-    }, [cart]),
 
     onDeleteProduct: useCallback((code)=>{
       store.deleteProduct(code)
@@ -40,11 +34,11 @@ function App({store}) {
     <>
     <PageLayout>
       <Head title='Магазин' isModal={false}/>
-      <Controls getTotalProducts={callbacks.getTotalProducts} setShowModal={setShowModal}/>
+      <Controls total={total} sum={sum} setShowModal={setShowModal}/>
       <List list={list} onAddItem={callbacks.onAddItem}/>
     </PageLayout>
     {showModal?
-      <Modal cart={cart} setShowModal={setShowModal} onDeleteProduct={callbacks.onDeleteProduct} getTotalProducts={callbacks.getTotalProducts}/>
+      <Modal cart={cart} sum={sum} setShowModal={setShowModal} onDeleteProduct={callbacks.onDeleteProduct} />
       : null}
     </>
   );

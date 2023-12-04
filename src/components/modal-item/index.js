@@ -19,7 +19,7 @@ function ModalItem(props){
         {props.item.count}шт
       </p>
       <div className='ModalItem-actions'>
-        <button onClick={()=>{props.onDelete(props.item.code)}}>
+        <button onClick={()=>{props.onDelete(props.item)}}>
           Удалить
         </button>
       </div>

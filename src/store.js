@@ -56,7 +56,9 @@ class Store {
       item.count = 1
       this.setState({
         ...this.state,
-        cart: [...this.state.cart, item]
+        cart: [...this.state.cart, item],
+        total: this.state.total + 1,
+        sum: this.state.sum + item.price
       })
     }else {
       this.setState({
@@ -65,43 +67,22 @@ class Store {
           if(elem.code == item.code) return {...elem, count: elem.count+1}
 
           return elem
-        })
+        }),
+        sum: this.state.sum + item.price
       })
     }
   };
 
-  /**
-   * Удаление записи по коду
-   * @param code
-   */
-  deleteItem(code) {
-    this.setState({
-      ...this.state,
-      // Новый список, в котором не будет удаляемой записи
-      list: this.state.list.filter(item => item.code !== code)
-    })
-  };
-
-  /**
-   * Получение общего количества уникального товара и суммы
-   */
-  getTotalProducts() {
-    let sum = 0 // сумма
-
-    this.state.cart.length && this.state.cart.forEach(item => {
-      sum = sum + (item.count * item.price)
-    })
-
-    return {total: this.state.cart.length, sum} //total - количество уникального товара
-  }
 
   /**
    * Удаление товара из корзины
   */
-  deleteProduct(code) {
+  deleteProduct(item) {
     this.setState({
       ...this.state,
-      cart: this.state.cart.filter(item => item.code !== code )
+      cart: this.state.cart.filter(elem => elem.code !== item.code ),
+      total: this.state.total - 1,
+      sum: this.state.sum - (item.count  * item.price)
     })
   }
 }

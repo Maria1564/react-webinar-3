@@ -5,8 +5,7 @@ import Head from '../head'
 import ModalList from '../modal-list'
 
 
-function Modal({cart, setShowModal, onDeleteProduct, getTotalProducts}){
-  const sum = getTotalProducts().sum
+function Modal({cart, sum, setShowModal, onDeleteProduct}){
 
   return (
     <div className='Modal'>
@@ -22,14 +21,13 @@ function Modal({cart, setShowModal, onDeleteProduct, getTotalProducts}){
 
 Modal.propTypes = {
   cart: PropTypes.array.isRequired,
+  sum: PropTypes.number.isRequired,
   setShowModal: PropTypes.func.isRequired,
   onDeleteProduct: PropTypes.func,
-  getTotalProducts: PropTypes.func
 }
 
 Modal.defaultProps = {
   onDeleteProduct: () => {},
-  getTotalProducts: () => {}
 }
 
 

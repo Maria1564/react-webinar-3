@@ -64,7 +64,7 @@ class Store {
       this.setState({
         ...this.state,
         cart: this.state.cart.map(elem => {
-          if(elem.code == item.code) return {...elem, count: elem.count+1}
+          if(elem.code == item.code && item.price !==0) return {...elem, count: elem.count+1}
 
           return elem
         }),

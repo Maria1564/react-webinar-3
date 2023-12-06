@@ -11,15 +11,16 @@ function Pagination({page, setPage}) {
 
   return (
     <div className={cn()}>
-      <div className={cn('items')}>
-        <a className={page === 1  ? 'active':''}>1</a>
+      <div className={cn('pages')}>
+        <a className={page === 1  ? `active ${cn('page')}`:cn('page')}>1</a>
         {
-          selectPage(page).map(item => {
-            if(item === "...") <p key={item}>...</p>
-            return  <a key={item} className={page === item ? 'active':''} >{item}</a>
+          selectPage(page).map((item, index) => {
+            console.log(item == "...")
+            if(item == "...") return <span key={index} className={cn('interval')}>...</span>
+            return  <a key={index} className={page === item ? `active ${cn('page')}`:cn('page')} >{item}</a>
           })
         }
-        <a className={page === 25  ? 'active':''}>25</a>
+        <a className={page === 25  ? `active ${cn('page')}`:cn('page')}>25</a>
       </div>
     </div>
   );

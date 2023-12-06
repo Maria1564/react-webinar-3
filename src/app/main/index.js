@@ -12,7 +12,7 @@ function Main() {
 
   const store = useStore();
 
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(9)
 
   useEffect(() => {
     store.actions.catalog.load();

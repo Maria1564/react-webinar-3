@@ -36,12 +36,12 @@ export function numberFormat(value, locale = 'ru-RU', options = {}) {
 
 
 export function selectPage(numPage) {
-  const countPages = 25 //кол-во страниц
   let pages = []
-  if(numPage === 1) pages.push(2,3, '...')
-  else if(numPage === 2 || numPage === 3 ) pages.push(2, 3,  4, "...")
+
+  if(numPage < 3) pages.push(2,3, '...')
+  else if(numPage === 3 ) pages.push(2, 3,  4, "...")
   else if(numPage > 3 && numPage < 23) pages.push("...", numPage-1,  numPage, numPage+1, "...")
   else if(numPage === 23) pages.push("...", 22, 23, 24)
   else pages.push("...", 23, 24)
-  return pages
+  return [1, ...pages, 25]
 }

@@ -12,11 +12,11 @@ function Main() {
 
   const store = useStore();
 
-  const [page, setPage] = useState(9)
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
+    store.actions.catalog.load(page);
+  }, [page]);
 
   const select = useSelector(state => ({
     list: state.catalog.list,

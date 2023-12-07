@@ -1,5 +1,6 @@
 .Pagination {
   margin-top: 22px;
+  user-select: none;
 }
 
 .Pagination-pages {

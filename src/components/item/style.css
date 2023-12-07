@@ -17,6 +17,17 @@
 .Item-title {
   width: 100%;
   padding: 20px 10px;
+  color: #404040;
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: none;
+}
+
+.Item-title:hover{
+  text-decoration-line: underline;
 }
 
 .Item-actions {

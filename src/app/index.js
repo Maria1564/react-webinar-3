@@ -1,4 +1,5 @@
 import {useCallback, useContext, useEffect, useState} from 'react';
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Main from "./main";
 import Basket from "./basket";
 import useStore from "../store/use-store";
@@ -13,10 +14,13 @@ function App() {
   const activeModal = useSelector(state => state.modals.name);
 
   return (
-    <>
-      <Main/>
+    <BrowserRouter>
+      <Routes>
+        <Route  path='/' element={<Main/>}/>
+      </Routes>
+
       {activeModal === 'basket' && <Basket/>}
-    </>
+    </BrowserRouter>
   );
 }
 

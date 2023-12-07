@@ -26,7 +26,6 @@ function Article() {
     }
     loadInfo(id)
   }, [id])
-  console.log(info)
 
   const select = useSelector(state => ({
     amount: state.basket.amount,

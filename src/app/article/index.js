@@ -7,6 +7,7 @@ import useStore from '../../store/use-store';
 import { useParams } from 'react-router';
 import './style.css';
 import AboutProduct from '../../components/about-product';
+import Menu from '../../components/menu'
 
 
 function Article() {
@@ -46,8 +47,13 @@ function Article() {
   return (
     <PageLayout>
       <Head title={info.title}/>
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
-                  sum={select.sum}/>
+      <div className='wrapper'>
+        <Menu/>
+        <BasketTool
+        onOpen={callbacks.openModalBasket}
+        amount={select.amount}
+        sum={select.sum}/>
+      </div>
       {
         Object.keys(info).length !== 0 && <AboutProduct info={info} addToBasket={callbacks.addToBasket}/>
       }

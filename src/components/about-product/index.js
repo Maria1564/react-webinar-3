@@ -15,10 +15,7 @@ function AboutProduct({info, addToBasket}) {
             <p>Категория: <span>{info.category.title}</span></p>
             <p>Год выпуска: <span>{info.edition}</span></p>
             <p className={cn('price')}>Цена:  {numberFormat(info.price)} ₽</p>
-            <button onClick={()=> {
-              console.log("info >> ", info)
-              addToBasket(info._id)
-              }}>Добавить</button>
+            <button onClick={()=> addToBasket(info._id)}>Добавить</button>
         </div>
     </div>
   );

@@ -1,19 +1,18 @@
 import {memo} from "react";
 import PropTypes from "prop-types";
 import {cn as bem} from '@bem-react/classname';
+import {selectPage} from "../../utils"
+import useStore from "../../store/use-store"
 import './style.css';
 
-import {selectPage} from "../../utils"
-
-function Pagination({page, setPage}) {
+function Pagination({page, setPage, countPage}) {
 
   const cn = bem('Pagination');
-
   return (
     <div className={cn()}>
       <div className={cn('pages')}>
         {
-          selectPage(page).map((item, index) => {
+          selectPage(page, countPage).map((item, index) => {
             if(item == "...") return <span key={index} className={cn('interval')}>...</span>
             return  <a key={index} className={page === item ? `active ${cn('page')}`:cn('page')} onClick={()=>setPage(item)}>{item}</a>
           })

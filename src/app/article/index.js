@@ -5,9 +5,9 @@ import BasketTool from "../../components/basket-tool";
 import useSelector from "../../store/use-selector";
 import useStore from '../../store/use-store';
 import { useParams } from 'react-router';
-import {numberFormat} from "../../utils";
 import {cn as bem} from '@bem-react/classname';
 import './style.css';
+import AboutProduct from '../../components/about-product';
 
 
 function Article() {
@@ -46,15 +46,7 @@ function Article() {
       <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
                   sum={select.sum}/>
       {
-        Object.keys(info).length !== 0 &&
-        <div className={cn('wrapper')}>
-            <p className={cn('description')}>{info.description}</p>
-            <p>Страна производитель: <span>{info.madeIn.title}</span></p>
-            <p>Категория: <span>{info.category.title}</span></p>
-            <p>Год выпуска: <span>{info.edition}</span></p>
-            <p className={cn('price')}>Цена:  {numberFormat(info.price)} ₽</p>
-            <button onClick={()=> callbacks.addToBasket(info._id)}>Добавить</button>
-        </div>
+        Object.keys(info).length !== 0 && <AboutProduct info={info} addToBasket={callbacks.addToBasket}/>
       }
     </PageLayout>
 

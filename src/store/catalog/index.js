@@ -16,6 +16,7 @@ class Catalog extends StoreModule {
   }
 
   async load(page) {
+    console.log("Load")
     // const response = await fetch(`/api/v1/articles?lang=ru&limit=10&skip=${page-1}0&fields=%2A`);
     const response = await fetch(`/api/v1/articles?lang=ru&limit=10&skip=${page-1}0&fields=items(_id, title, price),count`);
     const json = await response.json();

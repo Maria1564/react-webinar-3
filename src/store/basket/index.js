@@ -28,6 +28,8 @@ class Basket extends StoreModule {
       return result;
     });
 
+    console.log(this.store.getState().catalog.list)
+
     if (!exist) {
       // Поиск товара в каталоге, чтобы его добавить в корзину.
       // @todo В реальном приложении будет запрос к АПИ вместо поиска по состоянию.

@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 function Item(props) {
   const path = `/${props.item._id}`
   const cn = bem('Item');
-
   const callbacks = {
     onAdd: (e) => props.onAdd(props.item._id)
   }

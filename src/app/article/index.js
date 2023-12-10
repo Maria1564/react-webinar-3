@@ -5,17 +5,20 @@ import BasketTool from "../../components/basket-tool";
 import useSelector from "../../store/use-selector";
 import useStore from '../../store/use-store';
 import { useParams } from 'react-router';
-import {cn as bem} from '@bem-react/classname';
 import './style.css';
 import AboutProduct from '../../components/about-product';
 
 
 function Article() {
-  const cn = bem('Article');
   const store = useStore()
 
   const [info, setInfo] = useState({})  //информация о товаре
   const {id} = useParams()
+
+  useEffect(() => {
+    const page = localStorage.getItem('currentPage');
+    store.actions.catalog.load(page);
+  }, []);
 
   useEffect(()=>{
     //Получение данных о выбранном товаре

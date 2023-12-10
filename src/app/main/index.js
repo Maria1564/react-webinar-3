@@ -16,6 +16,7 @@ function Main() {
 
   useEffect(() => {
     store.actions.catalog.load(page);
+    localStorage.setItem('currentPage', page);
   }, [page]);
 
   const select = useSelector(state => ({

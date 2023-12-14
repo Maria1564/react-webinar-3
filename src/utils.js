@@ -33,3 +33,29 @@ export function codeGenerator(start = 0) {
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
+
+
+export function  createHierarchy(options) {
+  let newArr = []
+  let newArr2 = []
+  // console.log(categories)
+  let currentId = ""
+  let currentId2 = ""
+
+  options.forEach((item)=>{
+    if(!item.parent){
+      currentId = item._id
+      newArr.push({...item, pos: 0})
+    }
+    else if(item.parent._id === currentId){
+      newArr.push({...item, pos: 1})
+      currentId2 = item._id
+      options.forEach((item)=>{
+        if( item.parent != null && item.parent._id === currentId2){
+          newArr.push({...item, pos: 2})
+        }
+      })
+    }
+  })
+  return newArr
+}

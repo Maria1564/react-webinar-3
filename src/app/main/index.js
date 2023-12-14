@@ -14,6 +14,7 @@ import LocaleSelect from "../../containers/locale-select";
  */
 function Main() {
 
+  
   const store = useStore();
 
   useInit(() => {

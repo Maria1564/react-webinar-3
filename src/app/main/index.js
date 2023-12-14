@@ -8,6 +8,9 @@ import Head from "../../components/head";
 import CatalogFilter from "../../containers/catalog-filter";
 import CatalogList from "../../containers/catalog-list";
 import LocaleSelect from "../../containers/locale-select";
+import Button from '../../components/button';
+import useSelector from "../../hooks/use-selector";
+
 
 /**
  * Главная страница - первичная загрузка каталога
@@ -15,6 +18,9 @@ import LocaleSelect from "../../containers/locale-select";
 function Main() {
 
   const store = useStore();
+  const select = useSelector(state => ({
+    token: store.state.auth.token
+  }));
 
   useInit(() => {
     store.actions.catalog.initParams();
@@ -23,7 +29,7 @@ function Main() {
   const {t} = useTranslate();
 
   return (
-    <PageLayout>
+    <PageLayout head={select.token== ""? <Button text="Вход" path={"/login"}/>:<Button text="Выйти"/> }>
       <Head title={t('title')}>
         <LocaleSelect/>
       </Head>

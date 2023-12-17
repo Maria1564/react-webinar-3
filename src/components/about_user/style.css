@@ -1,0 +1,16 @@
+.AboutUser {
+  padding: 15px 20px;
+}
+
+.AboutUser  p {
+color: #000;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.AboutUser p > span {
+  color: #000;
+  font-weight: 700;
+}

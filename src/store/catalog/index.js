@@ -49,7 +49,6 @@ class CatalogState extends StoreModule {
     if (urlParams.has('sort')) validParams.sort = urlParams.get('sort');
     if (urlParams.has('query')) validParams.query = urlParams.get('query');
     if (urlParams.has('category')) validParams.category = urlParams.get('category');
-    console.log(validParams)
     await this.setParams({...this.initState().params, ...validParams, ...newParams}, true);
   }
 
@@ -99,7 +98,7 @@ class CatalogState extends StoreModule {
     };
 
     if(params.category) apiParams['search[category]'] = params.category
-    
+
     const response = await fetch(`/api/v1/articles?${new URLSearchParams(apiParams)}`);
     const json = await response.json();
     this.setState({

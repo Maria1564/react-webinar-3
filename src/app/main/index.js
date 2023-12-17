@@ -1,4 +1,4 @@
-import {memo} from 'react';
+import {memo, useEffect} from 'react';
 import useStore from "../../hooks/use-store";
 import useTranslate from "../../hooks/use-translate";
 import useInit from "../../hooks/use-init";
@@ -9,18 +9,15 @@ import CatalogFilter from "../../containers/catalog-filter";
 import CatalogList from "../../containers/catalog-list";
 import LocaleSelect from "../../containers/locale-select";
 import Button from '../../components/button';
-import useSelector from "../../hooks/use-selector";
 
 
 /**
  * Главная страница - первичная загрузка каталога
  */
 function Main() {
-
+  console.log("Main")
   const store = useStore();
-  const select = useSelector(state => ({
-    token: store.state.auth.token
-  }));
+
 
   useInit(() => {
     store.actions.catalog.initParams();
@@ -29,7 +26,7 @@ function Main() {
   const {t} = useTranslate();
 
   return (
-    <PageLayout head={select.token== ""? <Button text="Вход" path={"/login"}/>:<Button text="Выйти"/> }>
+    <PageLayout head={localStorage.getItem("token") == "" ? <Button text="Вход" path={"/login"}/>:<Button text="Выход" path={"/profile"}/> }>
       <Head title={t('title')}>
         <LocaleSelect/>
       </Head>

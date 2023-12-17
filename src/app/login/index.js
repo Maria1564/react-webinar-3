@@ -1,4 +1,4 @@
-import {memo, useState} from 'react';
+import {memo, useEffect, useLayoutEffect, useState} from 'react';
 import useStore from '../../hooks/use-store';
 import LoginForm from '../../components/login-form';
 import PageLayout from '../../components/page-layout';
@@ -18,8 +18,9 @@ function Login() {
   const store = useStore();
   const select = useSelector(state => ({
     warning: store.state.auth.warning,
-    token: store.state.auth.token
   }));
+
+  if(select.warning == false) window.location.href = "/profile";
 
   const callbacks = {
     onSign:(log, pass) =>{store.actions.auth.sign(log, pass)}
@@ -32,11 +33,7 @@ function Login() {
         <LocaleSelect/>
       </Head>
       <Navigation/>
-      {select.token == "" ?
-      <LoginForm  warning={select.warning} onSign={callbacks.onSign} path={"/login"}/>:
-      <LoginForm  warning={select.warning} onSign={callbacks.onSign} path={"/profile"}/>
-    }
-
+      <LoginForm  warning={select.warning} onSign={callbacks.onSign} />
     </PageLayout>
   );
 }

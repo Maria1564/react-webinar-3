@@ -1,22 +1,17 @@
-import {memo, useEffect, useState} from "react";
+import {memo} from "react";
 import PropTypes from 'prop-types';
 import './style.css';
 import { createHierarchy } from "../../utils";
 
 function FilterCategory(props) {
-
   const onFilter = (e) => {
-    console.log(e.target.value)
     props.onChange(e.target.value);
   };
   let categories = createHierarchy(props.options, 0)
   return (
-    <select className="Filter" onChange={onFilter}>
+    <select className="Filter" onChange={onFilter} value={props.value}>
           <option  value="">Все</option>
         {categories.map((item)=>{
-          //  <option key={item._id} value={item._id}>-{item.title}</option>
-
-
           return<option key={item._id} value={item._id}>{"- ".repeat(item.pos)} {item.title}</option>
         })}
     </select>
@@ -28,6 +23,7 @@ FilterCategory.propTypes = {
     _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     title: PropTypes.string
   })).isRequired,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func
 };
 

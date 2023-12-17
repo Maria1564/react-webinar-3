@@ -33,7 +33,6 @@ class CatalogState extends StoreModule {
       ...this.getState(),
       categories:  [...json.result.items]
     }, 'Загружены категории из АПИ')
-    console.log(this.getState().categories)
   }
 
   /**
@@ -100,7 +99,7 @@ class CatalogState extends StoreModule {
     };
 
     if(params.category) apiParams['search[category]'] = params.category
-
+    
     const response = await fetch(`/api/v1/articles?${new URLSearchParams(apiParams)}`);
     const json = await response.json();
     this.setState({

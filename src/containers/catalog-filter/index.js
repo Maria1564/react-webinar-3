@@ -22,6 +22,7 @@ function CatalogFilter() {
   const select = useSelector(state => ({
     sort: state.catalog.params.sort,
     query: state.catalog.params.query,
+    category: state.catalog.params.category,
     сategories: state.catalog.categories
   }));
 
@@ -49,7 +50,7 @@ function CatalogFilter() {
 
   return (
     <SideLayout padding='medium'>
-      <FilterCategory options={select.сategories} onChange={callbacks.onFilter}/>
+      <FilterCategory options={select.сategories} value={select.category} onChange={callbacks.onFilter} />
       <Select options={options.sort} value={select.sort} onChange={callbacks.onSort}/>
       <Input value={select.query} onChange={callbacks.onSearch} placeholder={'Поиск'}
              delay={1000}/>

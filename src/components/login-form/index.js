@@ -1,5 +1,7 @@
 import {memo, useLayoutEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import './style.css';
 
 /**
  * Главная страница - первичная загрузка каталога
@@ -14,20 +16,28 @@ function LoginForm({warning, onSign}) {
   }
 
   return (
-    <div>
+    <div className='LoginForm'>
       <h2>Вход</h2>
       <div className='login'>
         <label>Логин</label>
         <input className='inpName'/>
       </div>
       <div className='password'>
-        <label>пароль</label>
-        <input className='inpPass'/>
+        <label>Пароль</label>
+        <input className='inpPass' type='password'/>
       </div>
       {warning && <p className='warning'>Текст ошибки от сервера</p>}
-        <Link onClick={sign} to={"/login"}>Войти</Link>
+        <button><Link onClick={sign} to={"/login"}>Войти</Link></button>
     </div>
   );
 }
+
+LoginForm.propTypes = {
+  warning: PropTypes.bool
+};
+
+LoginForm.defaultProps = {
+  warning: null
+};
 
 export default memo(LoginForm);

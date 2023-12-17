@@ -5,7 +5,6 @@ import './style.css';
 import { Link } from "react-router-dom";
 
 function HeaderLayout({children, margin, isAuth, name}) {
-  console.log("dd")
   const cn = bem('HeaderLayout');
   return (
     <div className={cn({margin})}>

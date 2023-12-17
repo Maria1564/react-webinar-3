@@ -1,5 +1,6 @@
 import {memo} from 'react';
 import {cn as bem} from '@bem-react/classname';
+import PropTypes from 'prop-types';
 import './style.css';
 
 /**
@@ -19,5 +20,14 @@ function AboutUser({info, email}) {
     </div>
   );
 }
+
+AboutUser.propTypes = {
+  info: PropTypes.shape({
+    name: PropTypes.string,
+    phone: PropTypes.string
+  }).isRequired,
+  email: PropTypes.string.isRequired
+};
+
 
 export default memo(AboutUser);

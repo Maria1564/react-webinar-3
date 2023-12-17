@@ -11,6 +11,7 @@ import Spinner from "../../components/spinner";
 import ArticleCard from "../../components/article-card";
 import LocaleSelect from "../../containers/locale-select";
 import Button from '../../components/button';
+import HeaderLayout from '../../components/header-layout';
 
 
 /**
@@ -26,9 +27,14 @@ function Article() {
     store.actions.article.load(params.id);
   }, [params.id]);
 
+  useInit(() => {
+    store.actions.auth.getInfoUser(localStorage.getItem('token'));
+  }, [], true);
+
   const select = useSelector(state => ({
     article: state.article.data,
     waiting: state.article.waiting,
+    info: store.state.auth.data
   }));
 
   const {t} = useTranslate();
@@ -39,7 +45,9 @@ function Article() {
   }
 
   return (
-    <PageLayout head={localStorage.getItem("token")== ""? <Button text="Вход" path={"/login"}/>:<Button text="Выход" path={"/profile"}/>}>
+    <PageLayout head={localStorage.getItem("token") ?
+    <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/profile"}/></HeaderLayout>
+    : <HeaderLayout margin='left'><Button text="Вход" path={"/login"}/></HeaderLayout>}>
       <Head title={select.article.title}>
         <LocaleSelect/>
       </Head>

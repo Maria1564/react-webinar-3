@@ -9,6 +9,7 @@ import Button from '../../components/button';
 import useSelector from '../../hooks/use-selector';
 import AboutUser from "../../components/about_user"
 import useInit from "../../hooks/use-init";
+import HeaderLayout from '../../components/header-layout';
 
 /**
  * Приложение
@@ -28,7 +29,9 @@ function Profile() {
   const email = localStorage.getItem('email')
 
   return (
-    <PageLayout head={localStorage.getItem("token")== ""? <Button text="Вход" path={"/login"}/>:<Button text="Выход" path={"/profile"}/>}>
+    <PageLayout head={localStorage.getItem("token") ?
+      <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/profile"}/></HeaderLayout>
+      : <HeaderLayout margin='left'><Button text="Вход" path={"/login"}/></HeaderLayout>}>
        <Head title={t('title')}>
         <LocaleSelect/>
       </Head>

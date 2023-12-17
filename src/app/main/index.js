@@ -24,13 +24,19 @@ function Main() {
   }));
   useInit(() => {
     store.actions.catalog.initParams();
-    store.actions.auth.getInfoUser(localStorage.getItem('token'));
+    token && store.actions.auth.getInfoUser(token);
   }, [], true);
 
+  const callbacks = {
+    //Выход из учётной записи
+    onLogout: (token) => store.actions.auth.logout(token)
+  }
+
+  const token = localStorage.getItem("token")
   const {t} = useTranslate();
   return (
-    <PageLayout head={localStorage.getItem("token") ?
-    <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/profile"}/></HeaderLayout>
+    <PageLayout head={token ?
+    <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/login"} token={token} onLogout={callbacks.onLogout}/></HeaderLayout>
     : <HeaderLayout margin='left'><Button text="Вход" path={"/login"}/></HeaderLayout>}>
       <Head title={t('title')}>
         <LocaleSelect/>

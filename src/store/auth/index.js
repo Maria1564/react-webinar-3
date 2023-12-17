@@ -8,11 +8,11 @@ class AuthState extends StoreModule {
   initState() {
     return {
       data: {},
-      isAuth: false,
       warning: null
     }
   }
 
+  //Получение данных об авторизованном пользователе
   async getInfoUser(token){
     const response = await fetch("/api/v1/users/self?fields=*", {
       method: "GET",
@@ -30,6 +30,7 @@ class AuthState extends StoreModule {
 
   }
 
+  //Авторизация
   async sign(login, password){
     const response = await fetch("/api/v1/users/sign", {
       method: "POST",
@@ -57,6 +58,27 @@ class AuthState extends StoreModule {
 
   }
 
+  //Сброс авторизации
+  async logout(token){
+    await fetch("/api/v1/users/self?fields=*", {
+      method: "DELETE",
+      headers: {
+        "X-Token": token,
+        "Content-Type": "application/json",
+      },
+    });
+
+    this.setState({
+      ...this.getState,
+      data: {},
+      warning: null
+    }, "удалены данные о пользователе")
+
+    localStorage.removeItem('token')
+    localStorage.removeItem('email')
+    window.location.href = "/login";
+  }
 }
+
 
 export default AuthState;

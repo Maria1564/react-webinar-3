@@ -17,7 +17,7 @@ import HeaderLayout from '../../components/header-layout';
  */
 function Profile() {
   useInit(() => {
-    store.actions.auth.getInfoUser(localStorage.getItem('token'));
+    token && store.actions.auth.getInfoUser(token);
   }, [], true);
 
 
@@ -26,11 +26,18 @@ function Profile() {
   const select = useSelector(state => ({
     info: store.state.auth.data
   }));
+
   const email = localStorage.getItem('email')
+  const token = localStorage.getItem("token")
+
+  const callbacks = {
+    //Выход из учётной записи
+    onLogout: (token) => store.actions.auth.logout(token)
+  }
 
   return (
-    <PageLayout head={localStorage.getItem("token") ?
-      <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/profile"}/></HeaderLayout>
+    <PageLayout head={token ?
+      <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/login"} token={token} onLogout={callbacks.onLogout}/></HeaderLayout>
       : <HeaderLayout margin='left'><Button text="Вход" path={"/login"}/></HeaderLayout>}>
        <Head title={t('title')}>
         <LocaleSelect/>

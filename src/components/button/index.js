@@ -5,16 +5,24 @@ import {numberFormat} from "../../utils";
 import './style.css';
 import { Link } from "react-router-dom";
 
-function Button({text, path}) {
+function Button({text, path, token, onLogout}) {
   const cn = bem('Button');
   return (
-    <button className={cn()}><Link to={path}>{text}</Link></button>
+    <button className={cn()} onClick={()=> onLogout(token)}><Link to={path}>{text}</Link></button>
   );
 }
 
 Button.propTypes = {
-      text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  token: PropTypes.string,
+  onLogout: PropTypes.func
 };
 
+
+Button.defaultProps = {
+  token: null,
+  onLogout: ()=>{}
+};
 
 export default memo(Button);

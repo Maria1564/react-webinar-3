@@ -28,7 +28,7 @@ function Article() {
   }, [params.id]);
 
   useInit(() => {
-    store.actions.auth.getInfoUser(localStorage.getItem('token'));
+    token && store.actions.auth.getInfoUser(token);
   }, [], true);
 
   const select = useSelector(state => ({
@@ -38,15 +38,18 @@ function Article() {
   }));
 
   const {t} = useTranslate();
+  const token = localStorage.getItem("token")
 
   const callbacks = {
     // Добавление в корзину
     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
+    //Выход из учётной записи
+    onLogout: (token) => store.actions.auth.logout(token)
   }
 
   return (
     <PageLayout head={localStorage.getItem("token") ?
-    <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/profile"}/></HeaderLayout>
+    <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/login"} token={token} onLogout={callbacks.onLogout}/></HeaderLayout>
     : <HeaderLayout margin='left'><Button text="Вход" path={"/login"}/></HeaderLayout>}>
       <Head title={select.article.title}>
         <LocaleSelect/>

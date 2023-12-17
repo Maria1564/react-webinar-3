@@ -14,7 +14,7 @@ import Profile from './profile';
 function App() {
 
   const activeModal = useSelector(state => state.modals.name);
-
+  
   return (
     <>
       <Routes>

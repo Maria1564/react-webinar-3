@@ -33,7 +33,7 @@ class CatalogState extends StoreModule {
       ...this.getState(),
       categories:  [...json.result.items]
     }, 'Загружены категории из АПИ')
-
+    console.log(this.getState().categories)
   }
 
   /**

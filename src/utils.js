@@ -1,3 +1,4 @@
+
 /**
  * Плюрализация
  * Возвращает вариант с учётом правил множественного числа под указанную локаль
@@ -37,25 +38,22 @@ export function numberFormat(value, locale = 'ru-RU', options = {}) {
 
 export function  createHierarchy(options) {
   let newArr = []
-  let newArr2 = []
-  // console.log(categories)
-  let currentId = ""
-  let currentId2 = ""
-
-  options.forEach((item)=>{
-    if(!item.parent){
-      currentId = item._id
+  options.forEach((item,index) => {
+    if(!item.parent && newArr.includes(item) == false) {
       newArr.push({...item, pos: 0})
+      searchChild(options, newArr, item._id, 0)
     }
-    else if(item.parent._id === currentId){
-      newArr.push({...item, pos: 1})
-      currentId2 = item._id
-      options.forEach((item)=>{
-        if( item.parent != null && item.parent._id === currentId2){
-          newArr.push({...item, pos: 2})
-        }
-      })
-    }
-  })
+    })
   return newArr
+}
+
+function searchChild(options, newArr, id, pos) {
+  options.forEach(item => {
+    newArr.forEach(el => {
+      if(item.parent && item.parent._id == id && el.pos == pos && !newArr.some(el => el._id == item._id)){
+        newArr.push({...item, pos: pos+1})
+        searchChild(options, newArr, item._id, pos+1)
+      }
+    })
+  })
 }

@@ -9,15 +9,16 @@ function FilterCategory(props) {
     console.log(e.target.value)
     props.onChange(e.target.value);
   };
-  let categories = createHierarchy(props.options)
+  let categories = createHierarchy(props.options, 0)
   return (
     <select className="Filter" onChange={onFilter}>
-        <option  value="">Все</option>
-      {categories.map((item)=>{
-        if(item.pos== 0) return <option key={item._id}  value={item._id}>{item.title}</option>
-        if(item.pos== 1) return <option key={item._id} value={item._id}>-{item.title}</option>
-        return<option key={item._id} value={item._id}>--{item.title}</option>
-      })}
+          <option  value="">Все</option>
+        {categories.map((item)=>{
+          //  <option key={item._id} value={item._id}>-{item.title}</option>
+
+
+          return<option key={item._id} value={item._id}>{"- ".repeat(item.pos)} {item.title}</option>
+        })}
     </select>
   )
 }

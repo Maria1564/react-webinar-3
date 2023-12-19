@@ -8,6 +8,7 @@ import LocaleSelect from '../../containers/locale-select';
 import Navigation from '../../containers/navigation';
 import Button from '../../components/button';
 import useSelector from '../../hooks/use-selector';
+import HeaderLayout from '../../components/header-layout';
 
 
 /**
@@ -28,7 +29,7 @@ function Login() {
 
   const {t} = useTranslate();
   return (
-    <PageLayout head={<Button text="Вход" path={"/login"}/>}>
+    <PageLayout head={<HeaderLayout ><Button text="Вход" path={"/login"}/></HeaderLayout>}>
        <Head title={t('title')}>
         <LocaleSelect/>
       </Head>

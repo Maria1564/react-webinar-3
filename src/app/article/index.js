@@ -49,8 +49,8 @@ function Article() {
 
   return (
     <PageLayout head={localStorage.getItem("token") ?
-    <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/login"} token={token} onLogout={callbacks.onLogout}/></HeaderLayout>
-    : <HeaderLayout margin='left'><Button text="Вход" path={"/login"}/></HeaderLayout>}>
+    <HeaderLayout isAuth={true} name={select.info.name}><Button text="Выход" path={"/login"} token={token} onLogout={callbacks.onLogout}/></HeaderLayout>
+    : <HeaderLayout ><Button text="Вход" path={"/login"}/></HeaderLayout>}>
       <Head title={select.article.title}>
         <LocaleSelect/>
       </Head>

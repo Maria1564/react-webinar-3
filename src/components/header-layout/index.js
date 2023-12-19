@@ -4,10 +4,10 @@ import {cn as bem} from '@bem-react/classname';
 import './style.css';
 import { Link } from "react-router-dom";
 
-function HeaderLayout({children, margin, isAuth, name}) {
+function HeaderLayout({children, isAuth, name}) {
   const cn = bem('HeaderLayout');
   return (
-    <div className={cn({margin})}>
+    <div className={cn()}>
       {isAuth && <Link to={"/profile"}>{name}</Link>}
       {React.Children.map(children, (child) => (
         <div key={child.key} className={cn('item')}>{child}</div>
@@ -18,7 +18,6 @@ function HeaderLayout({children, margin, isAuth, name}) {
 
 HeaderLayout.propTypes = {
   children: PropTypes.node,
-  margin: PropTypes.oneOf(['left', 'right', "center"]).isRequired,
   isAuth: PropTypes.bool,
   name: PropTypes.string
 }

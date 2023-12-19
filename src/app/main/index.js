@@ -36,8 +36,8 @@ function Main() {
   const {t} = useTranslate();
   return (
     <PageLayout head={token ?
-    <HeaderLayout margin='left'  isAuth={true} name={select.info.name}><Button text="Выход" path={"/login"} token={token} onLogout={callbacks.onLogout}/></HeaderLayout>
-    : <HeaderLayout margin='left'><Button text="Вход" path={"/login"}/></HeaderLayout>}>
+    <HeaderLayout isAuth={true} name={select.info.name}><Button text="Выход" path={"/login"} token={token} onLogout={callbacks.onLogout}/></HeaderLayout>
+    : <HeaderLayout ><Button text="Вход" path={"/login"}/></HeaderLayout>}>
       <Head title={t('title')}>
         <LocaleSelect/>
       </Head>
